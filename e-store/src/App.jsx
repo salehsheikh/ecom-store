@@ -1,22 +1,31 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
-import Carousel from './components/Carousel';
-import HeroSection from './components/HeroSection';
 import SingleProduct from './components/SingleProduct';
 import Footer from './components/Footer';
-
+import Products from './pages/Products';
+import Home from './pages/Home';
+import Store from './Slices/store';
+const queryClient = new QueryClient();
 const App = () => {
   return (
+    <Provider store={Store}>
+      <QueryClientProvider client={queryClient}>
     <Router>
       <Navbar />
-      <Carousel />
-      <HeroSection />
       <Routes>
+        <Route path='/' element={<Home/>}/>
         <Route path="/singleProduct/:id" element={<SingleProduct />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
       <Footer/>
     </Router>
+    <ReactQueryDevtools />
+      </QueryClientProvider>
+    </Provider>
   );
 };
 

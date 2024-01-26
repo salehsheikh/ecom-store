@@ -1,8 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
-
-
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const CustomerTest = () => {
   const testimonials = [
     {
@@ -33,7 +32,7 @@ const CustomerTest = () => {
     <div className="bg-gray-800  py-16 ml-4 lg:mx-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">Customer Testimonial</h2>
+          <h2 className="text-4xl font-bold text-white mb-6">Customer Testimonial</h2>
           <Slider {...settings}>
             {testimonials.map((testimonial) => (
               <div key={testimonial.id} className="flex items-center justify-center mt-10 ">
