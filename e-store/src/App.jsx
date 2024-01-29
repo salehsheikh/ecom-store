@@ -4,11 +4,12 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
-import SingleProduct from './components/SingleProduct';
 import Footer from './components/Footer';
 import Products from './pages/Products';
 import Home from './pages/Home';
 import Store from './Slices/store';
+import SingleProduct from './pages/SingleProduct';
+import AboutUs from './pages/AboutUs';
 const queryClient = new QueryClient();
 const App = () => {
   return (
@@ -18,8 +19,9 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path="/singleProduct/:id" element={<SingleProduct />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
       <Footer/>
     </Router>

@@ -8,8 +8,8 @@ const Navbar = () => {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "#about-us", label: "About Us" },
     { to: "/products", label: "Products" },
+    { to: "/about", label: "About Us" },
     { to: "#contact-us", label: "Contact Us" },
   ];
 
@@ -29,7 +29,8 @@ const Navbar = () => {
                 <li key={item.label}>
                   <Link
                     to={item.to}
-                    className="font-montserrat leading-normal text-lg text-slate-gray"
+                    className="hover:text-indigo-500 transition duration-300 ease-in-out  hover:underline"
+             
                   >
                     {item.label}
                   </Link>

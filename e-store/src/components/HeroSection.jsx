@@ -3,13 +3,16 @@ import { BsTruck } from "react-icons/bs";
 import { BsPhoneVibrateFill } from "react-icons/bs";
 import { TiMessages } from "react-icons/ti";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { Link } from 'react-router-dom';
+
 const HeroSection = () => {
   return (
     <>
     <div className="container mx-auto mt-10 mb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Card 1 */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] hover:opacity-70 transition-opacity">
+        <Link to="/products" className="hover:underline">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] transform hover:scale-105 transition duration-300 ease-in-out">
           <div className="relative h-full">
             <img
               src="https://img.freepik.com/free-vector/abstract-sales-landing-page-with-photo_23-2148373932.jpg?size=626&ext=jpg&ga=GA1.1.2003098129.1703697760&semt=ais"
@@ -17,14 +20,15 @@ const HeroSection = () => {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-white text-2xl font-bold">Card 1</h2>
+              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
             </div>
           </div>
           {/* Add other content or components here */}
-        </div>
+        </div></Link>
        
         {/* Card 2 */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] hover:opacity-70 transition-opacity">
+        <Link to="/products" className="hover:underline">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] transform hover:scale-105 transition duration-300 ease-in-out">
           <div className="relative h-full">
             <img
          src="https://images.pexels.com/photos/19891679/pexels-photo-19891679/free-photo-of-model-photography.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -32,15 +36,15 @@ const HeroSection = () => {
               className="w-full h-full object-cover "
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-white text-2xl font-bold">Card 1</h2>
+              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
             </div>
           </div>
           {/* Add other content or components here */}
-        </div>
+        </div></Link>
 
         {/* Card 3 */}
-        
-        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px]  hover:opacity-70 transition-opacity">
+        <Link to="/products" className="hover:underline">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] transform hover:scale-105 transition duration-300 ease-in-out">
           <div className="relative h-full">
             <img
         src=" https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -48,15 +52,15 @@ const HeroSection = () => {
               className="w-full h-full object-cover "
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-white text-2xl font-bold">Card 1</h2>
+              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
             </div>
           </div>
           {/* Add other content or components here */}
-        </div>
+        </div></Link>
 
         {/* Card 4 */}
-       
-        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] hover:opacity-70 transition-opacity" >
+        <Link to="/products" className="hover:underline">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] transform hover:scale-105 transition duration-300 ease-in-out" >
           <div className="relative h-full">
             <img
         src=" https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -64,11 +68,12 @@ const HeroSection = () => {
               className="w-full h-full object-cover "
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-white text-2xl font-bold">Card 1</h2>
+              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
             </div>
           </div>
           {/* Add other content or components here */}
         </div>
+        </Link>
       </div>
     </div>
     <div className="flex gap-20 h-40 items-center justify-center bg-black mx-4 text-sm font-medium text-white sm:mx-6 lg:mx-8">

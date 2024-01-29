@@ -17,6 +17,7 @@ const productSlice = createSlice({
       state.data = action.payload;
       // Assuming feature products are the first 5 items
       state.featureProducts = action.payload.slice(4, 12);
+    
     },
     apiError: (state) => {
       state.isLoading = false;
