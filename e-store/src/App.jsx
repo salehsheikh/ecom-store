@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Store from './Slices/store';
 import SingleProduct from './pages/SingleProduct';
 import AboutUs from './pages/AboutUs';
+import ShoppingCart from './pages/ShoppingCart';
 const queryClient = new QueryClient();
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="/products" element={<Products />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
       <Footer/>
     </Router>
