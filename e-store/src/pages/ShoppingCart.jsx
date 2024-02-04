@@ -1,22 +1,42 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity } from '../Slices/cartSlice';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../auth/Firebase';
+import {  onAuthStateChanged } from 'firebase/auth';
 
 const ShoppingCart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate=useNavigate();
 
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
+    // Ensure the new quantity is within a valid range (greater than 0)
+    newQuantity = Math.max(1, newQuantity);
+
     dispatch(updateCartItemQuantity(productId, newQuantity));
   };
+  
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
+  const handleCheckout = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, navigate to the checkout page
+        navigate('/checkout', { state: { cartItems } });
+      } else {
+        // User is not signed in, redirect to the login page
+        navigate('/login');
+      }
+    });
+  };
+
 
   return (
     <div className="container mx-auto my-8">
@@ -61,7 +81,7 @@ const ShoppingCart = () => {
           ))}
           <div className="mt-4">
             <p className="text-lg font-semibold">Total Price: ${calculateTotalPrice()}</p>
-            <button className="bg-indigo-500 text-white px-4 py-2 rounded-full mt-4">
+            <button className="bg-indigo-500 text-white px-4 py-2 rounded-full mt-4" onClick={handleCheckout}>
               Checkout
             </button>
           </div>

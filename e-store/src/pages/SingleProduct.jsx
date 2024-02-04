@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import { addToCart } from '../Slices/cartSlice';
 
 const SingleProduct = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -14,7 +18,6 @@ const SingleProduct = () => {
   }, [id]);
 
   const handleIncrease = () => {
-    // Check if the increased quantity exceeds the product stock
     if (quantity < product.stock) {
       setQuantity((prevQuantity) => prevQuantity + 1);
     }
@@ -34,24 +37,41 @@ const SingleProduct = () => {
     setIsHovered(false);
   };
 
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        images: product.images,
+        quantity,
+      })
+    );
+
+    // Redirect to the cart page after adding to cart
+    navigate.push('/cart');
+  };
+
   return (
     <div className="container mx-auto p-8">
       <h2 className="text-3xl font-bold mb-4">Product Details</h2>
       {product ? (
-        <div className="flex">
-         <img
-  className="mr-8 w-full h-auto sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4"
-  src={isHovered ? product.images[2] : product.thumbnail}
-  alt={product.title}
-  onMouseEnter={handleImageHover}
-  onMouseLeave={handleImageLeave}
-/>
+        <div className="flex flex-col sm:flex-row">
+          <img
+            className="mb-4 sm:mr-8 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4"
+            src={isHovered ? product.images[2] : product.thumbnail}
+            alt={product.title}
+            onMouseEnter={handleImageHover}
+            onMouseLeave={handleImageLeave}
+          />
 
-          <div>
+          <div className="flex-1">
             <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
-            <p className="text-gray-600 mb-2">${product.price}</p>
+            <p className="text-gray-600 mb-2">Price: ${product.price}</p>
             <p className="mb-4">{product.description}</p>
             <p className="text-gray-700 mb-2">Rating: {product.rating}</p>
+            <p className="text-gray-700 mb-2">In Stock: {product.stock}</p>
+
             <div className="flex space-x-4">
               <button
                 className="bg-gray-200 text-gray-700 px-4 py-2 rounded-l"
@@ -61,7 +81,7 @@ const SingleProduct = () => {
               </button>
               <span className="bg-gray-100 px-4 py-2">{quantity}</span>
               <button
-                className="bg-gray-200 text-gray-700 px-4 py-2 rounded-1"
+                className="bg-gray-200 text-gray-700 px-4 py-2 rounded-r"
                 onClick={handleIncrease}
               >
                 +
@@ -70,6 +90,12 @@ const SingleProduct = () => {
             <p className="mt-4">
               Total Price: ${product.price * quantity}
             </p>
+            <button
+              className="bg-indigo-500 hover:bg-indigo-700 text-white px-4 py-2 rounded-full mt-4"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       ) : (
