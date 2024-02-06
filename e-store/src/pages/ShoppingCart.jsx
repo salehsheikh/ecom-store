@@ -17,9 +17,11 @@ const ShoppingCart = () => {
   const handleQuantityChange = (productId, newQuantity) => {
     // Ensure the new quantity is within a valid range (greater than 0)
     newQuantity = Math.max(1, newQuantity);
-
-    dispatch(updateCartItemQuantity(productId, newQuantity));
+  
+    dispatch(updateCartItemQuantity({ id: productId, quantity: newQuantity }));
   };
+  
+  
   
 
   const calculateTotalPrice = () => {
@@ -67,7 +69,7 @@ const ShoppingCart = () => {
                     >
                       -
                     </button>
-                    <span className="text-gray-700">Quantity: {item.quantity}</span>
+                    <span className="text-gray-700">Quantity: {item.quantity }{updateCartItemQuantity}</span>
                     <button
                       className="text-gray-700"
                       onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
