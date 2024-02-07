@@ -19,7 +19,7 @@ const Star = ({ stars }) => {
   });
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center px-14">
       {ratingStar}
     </div>
   );

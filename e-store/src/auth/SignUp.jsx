@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './Firebase';
+import { ToastContainer,toast } from 'react-toastify';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,11 +18,33 @@ const SignUp = () => {
       const user = userCredential.user;
       console.log(user);
       navigate('/login');
+      toast.success(`${email} Signup  successfully`, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+  
+      });
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.error(errorCode, errorMessage);
+      toast.error(errorMessage, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
     }
+   
+
   };
 
   return (
@@ -66,6 +89,7 @@ const SignUp = () => {
           >
             Sign up
           </button>
+          <ToastContainer/>
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-600">

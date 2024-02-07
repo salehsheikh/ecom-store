@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Star from './Star';
 
-const Product = ({ id, title, thumbnail, price, category }) => {
+const Product = ({ id, title, thumbnail, price, discountPercentage,rating }) => {
   // Use the first available image or a default image URL
 
 
@@ -18,8 +19,8 @@ const Product = ({ id, title, thumbnail, price, category }) => {
             className="w-full h-56 object-cover object-center"
             onError={(e) => console.error("Error loading image:", e.target.src, e.target.alt, e.target.error)}
           />
-          <figcaption className="absolute top-0 left-0 bg-indigo-500 text-white p-2 text-sm font-semibold">
-            {category}
+          <figcaption className="absolute top-0 left-0 bg-red-500 text-white p-2 text-sm font-semibold">
+            {` Flat ${discountPercentage} Off`}
           </figcaption>
         </figure>
 
@@ -28,9 +29,7 @@ const Product = ({ id, title, thumbnail, price, category }) => {
           <p className="text-gray-700">${price}</p>
 
           {/* Add to Cart Button */}
-          <button className="bg-indigo-500  hover:bg-indigo-700 text-white px-4 py-2 rounded-full mt-4 ml-20">
-            Add to Cart
-          </button>
+          <Star stars={rating} className='content-center' />
         </div>
       </div>
     </NavLink>

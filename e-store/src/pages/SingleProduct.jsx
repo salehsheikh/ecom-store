@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { addToCart } from '../Slices/cartSlice';
+import { Vortex } from 'react-loader-spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -10,7 +13,6 @@ const SingleProduct = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((response) => response.json())
@@ -47,9 +49,20 @@ const SingleProduct = () => {
         quantity,
       })
     );
+    toast.success(`${product.title} has been added to the cart`, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
 
+    });
     // Redirect to the cart page after adding to cart
-    navigate.push('/cart');
+    navigate('/cart');
+    
   };
 
   return (
@@ -95,11 +108,21 @@ const SingleProduct = () => {
               onClick={handleAddToCart}
             >
               Add to Cart
-            </button>
+            </button><ToastContainer/>
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center h-screen">
+        <Vortex
+          visible={true}
+          height="160"
+          width="160"
+          ariaLabel="vortex-loading"
+          wrapperStyle={{}}
+          wrapperClass="vortex-wrapper"
+          colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+        />
+      </div>
       )}
     </div>
   );

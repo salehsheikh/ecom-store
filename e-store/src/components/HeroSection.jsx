@@ -9,18 +9,21 @@ const HeroSection = () => {
   return (
     <>
     <div className="container mx-auto mt-10 mb-10">
+    <div className="text-center text-2xl font-semibold text-gray-700 mb-12">Trending this week</div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Card 1 */}
         <Link to="/products" className="hover:underline">
         <div className="bg-white rounded-lg shadow-md overflow-hidden h-[350px] transform hover:scale-105 transition duration-300 ease-in-out">
+        
           <div className="relative h-full">
+          
             <img
               src="https://img.freepik.com/free-vector/abstract-sales-landing-page-with-photo_23-2148373932.jpg?size=626&ext=jpg&ga=GA1.1.2003098129.1703697760&semt=ais"
               alt="Card 1"
-              className="w-full h-full object-cover"
+              className="w-full h-auto  object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
+              
             </div>
           </div>
           {/* Add other content or components here */}
@@ -36,7 +39,7 @@ const HeroSection = () => {
               className="w-full h-full object-cover "
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
+              
             </div>
           </div>
           {/* Add other content or components here */}
@@ -52,7 +55,7 @@ const HeroSection = () => {
               className="w-full h-full object-cover "
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
+              
             </div>
           </div>
           {/* Add other content or components here */}
@@ -68,7 +71,7 @@ const HeroSection = () => {
               className="w-full h-full object-cover "
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-sky-400/75 text-2xl font-bold">Check Now</h2>
+              
             </div>
           </div>
           {/* Add other content or components here */}
@@ -76,26 +79,38 @@ const HeroSection = () => {
         </Link>
       </div>
     </div>
-    <div className="flex gap-20 h-40 items-center justify-center bg-black mx-4 text-sm font-medium text-white sm:mx-6 lg:mx-8">
-    <span> <BsTruck  className="w-10 h-10"/>
-    <br />
-    Free Shipping <br/>
-    On all orders over 1399.</span>
-    <span> <BsPhoneVibrateFill  className="w-10 h-10"/>
-    <br />
-    Give Us A Call
- <br/>
- (+92) 041-8818705</span>
-    <span> <TiMessages  className="w-10 h-10"/>
-    <br />
-    Free Shipping <br/>
-    On all orders over 1399.</span>
-    <span > <MdOutlineMailOutline  className="w-10 h-10"/>
-    <br />
-    Free Shipping <br/>
-    On all orders over 1399.</span>
-   
-  </div>
+    <div className="flex flex-col sm:flex-row gap-6 sm:gap-20 h-auto sm:h-40 items-center justify-center bg-black mx-4 sm:mx-6 lg:mx-8 text-sm font-medium text-white">
+
+<span className="text-center">
+  <BsTruck className="w-10 h-10 mx-auto mb-2 sm:mb-0"/>
+  <br />
+  Free Shipping <br/>
+  On all orders over 1399.
+</span>
+
+<span className="text-center">
+  <BsPhoneVibrateFill className="w-10 h-10 mx-auto mb-2 sm:mb-0"/>
+  <br />
+  Give Us A Call <br/>
+  (+92) 041-8818705
+</span>
+
+<span className="text-center">
+  <TiMessages className="w-10 h-10 mx-auto mb-2 sm:mb-0"/>
+  <br />
+  Free Shipping <br/>
+  On all orders over 1399.
+</span>
+
+<span className="text-center">
+  <MdOutlineMailOutline className="w-10 h-10 mx-auto mb-2 sm:mb-0"/>
+  <br />
+  Free Shipping <br/>
+  On all orders over 1399.
+</span>
+
+</div>
+
  
   </>
   );

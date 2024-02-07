@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './Firebase';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,12 +17,31 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         navigate('/home');
-        console.log(user);
+        toast.success(`${email} logged in successfully`, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(errorCode, errorMessage);
+        toast.error(errorMessage, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
       });
   };
 
@@ -68,6 +89,7 @@ const Login = () => {
             >
               Login
             </button>
+            <ToastContainer />
           </div>
         </form>
 

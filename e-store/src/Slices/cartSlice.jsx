@@ -27,17 +27,21 @@ const cartSlice = createSlice({
       // Update total quantity
       state.totalQuantity += quantity;
     },
-    updateCartItemQuantity: (state, action) => {
-      const { id, quantity } = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
+    // Update the updateCartItemQuantity reducer in the cartSlice.js file
 
-      if (existingItem) {
-        // Update total quantity
-        state.totalQuantity += quantity - existingItem.quantity;
+updateCartItemQuantity: (state, action) => {
+  const { id, quantity } = action.payload;
+  const existingItem = state.items.find((item) => item.id === id);
 
-        existingItem.quantity = quantity;
-      }
-    },
+  if (existingItem) {
+    // Update total quantity
+    state.totalQuantity += quantity - existingItem.quantity;
+
+    // Update quantity of the corresponding cart item
+    existingItem.quantity = quantity;
+  }
+},
+
     removeFromCart: (state, action) => {
       const itemId = action.payload;
       const itemToRemove = state.items.find((item) => item.id === itemId);

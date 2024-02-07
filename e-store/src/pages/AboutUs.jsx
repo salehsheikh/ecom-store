@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const AboutUs = () => {
   return (
@@ -45,8 +46,19 @@ const AboutUs = () => {
           <p className="text-lg text-gray-700 mb-4">
             Have questions or want to learn more about Our Company? Feel free to reach out to us. We value your feedback and are always here to assist you.
           </p>
-          <div className="flex items-center space-x-4">
-            {/* Add contact information, form, or other contact options */}
+          <div className="flex justify-center space-x-6">
+            {/* Instagram */}
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram className="text-3xl text-gray-700 hover:text-gray-900 cursor-pointer" />
+            </a>
+            {/* LinkedIn */}
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin className="text-3xl text-gray-700 hover:text-gray-900 cursor-pointer" />
+            </a>
+            {/* GitHub */}
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+              <FaGithub className="text-3xl text-gray-700 hover:text-gray-900 cursor-pointer" />
+            </a>
           </div>
         </section>
       </div>

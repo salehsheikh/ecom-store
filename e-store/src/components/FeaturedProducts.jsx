@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setApiData, apiError } from '../Slices/productSlice'; 
 import Product from './Product';
+import { Vortex } from 'react-loader-spinner';
 
 const FeatureProducts = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,20 @@ const FeatureProducts = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <div className="text-center mt-8">Loading...</div>;
+        return (
+      <div className="flex justify-center items-center h-screen">
+        <Vortex
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="vortex-loading"
+          wrapperStyle={{}}
+          wrapperClass="vortex-wrapper"
+          colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+        />
+      </div>
+    );
+
   }
 
   return (
@@ -42,7 +56,8 @@ const FeatureProducts = () => {
               title={product.title}
               thumbnail={product.thumbnail}
               price={product.price}
-              category={product.category}
+              discountPercentage={product.discountPercentage}
+              rating={product.rating}
             />
           ))}
         </div>
