@@ -20,7 +20,7 @@ const HeroSection = () => {
             <img
               src="https://img.freepik.com/free-vector/abstract-sales-landing-page-with-photo_23-2148373932.jpg?size=626&ext=jpg&ga=GA1.1.2003098129.1703697760&semt=ais"
               alt="Card 1"
-              className="w-full h-auto  object-cover"
+              className="w-full h-full  object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               
@@ -92,21 +92,21 @@ const HeroSection = () => {
   <BsPhoneVibrateFill className="w-10 h-10 mx-auto mb-2 sm:mb-0"/>
   <br />
   Give Us A Call <br/>
-  (+92) 041-8818705
+  (+92) 031-81546330
 </span>
 
 <span className="text-center">
   <TiMessages className="w-10 h-10 mx-auto mb-2 sm:mb-0"/>
   <br />
-  Free Shipping <br/>
-  On all orders over 1399.
+ Delivery <br/>
+  information.
 </span>
 
 <span className="text-center">
   <MdOutlineMailOutline className="w-10 h-10 mx-auto mb-2 sm:mb-0"/>
   <br />
-  Free Shipping <br/>
-  On all orders over 1399.
+  Email us on <br/>
+   salehsheikh786@gmail.com.
 </span>
 
 </div>
