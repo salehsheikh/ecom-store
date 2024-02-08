@@ -87,7 +87,7 @@ const Products = () => {
   return (
     <div className="container mx-auto py-8 flex flex-col lg:flex-row">
       {/* Filters on the left */}
-    <div className="w-full lg:w-1/5 p-4 shadow-md max-h-[400px] lg:ml-4">
+    <div className="w-full lg:w-[300px] p-4 shadow-md max-h-[400px] lg:ml-4">
       <div>
         <label className="block text-gray-600">Search :</label>
         <input
