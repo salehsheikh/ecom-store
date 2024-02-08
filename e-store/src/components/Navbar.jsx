@@ -21,7 +21,7 @@ const Navbar = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6   "
+            className="w-6 h-6 "
           >
             <path
               strokeLinecap="round"
@@ -47,8 +47,8 @@ const Navbar = () => {
             Get free delivery on orders over $100
           </p>
           <nav className="flex justify-between items-center max-container h-20">
-            <Link to="/" className="text-3xl font-bold">
-              Logo
+            <Link to="/"className=" text-wrap bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-5xl ">
+              sHkStore
             </Link>
             <ul className="flex-1 flex justify-center items-center gap-16 max-sm:hidden">
               {navLinks.map((item) => (
