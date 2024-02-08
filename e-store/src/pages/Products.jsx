@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { setApiData, apiError } from '../Slices/productSlice';
 import { Link } from 'react-router-dom';
@@ -9,20 +8,37 @@ import Checkbox from './Checkbox';
 
 const API = 'https://dummyjson.com/products?limit=100';
 
-const fetchProducts = async () => {
-  const response = await fetch(API);
-  const data = await response.json();
-  return data.products;
-};
-
 const Products = () => {
   const dispatch = useDispatch();
-  const { data: products, isLoading, isError } = useQuery('products', () => fetchProducts());
+  const [products, setProducts] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [visibleProducts, setVisibleProducts] = useState(24);
   const [hoveredProductId, setHoveredProductId] = useState(null);
   const [searchInput, setSearchInput] = useState('');
   const [priceRange, setPriceRange] = useState([0, 1500]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(API);
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data.products);
+        setIsLoading(false);
+      } catch (error) {
+        setIsError(true);
+        setIsLoading(false);
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     if (products) {
