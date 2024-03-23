@@ -4,6 +4,7 @@ import { removeFromCart, updateCartItemQuantity } from "../Slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../auth/Firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import {loadStripe} from '@stripe/stripe-js';
 
 const ShoppingCart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -27,18 +28,52 @@ const ShoppingCart = () => {
       0
     );
   };
-  const handleCheckout = () => {
+  
+  const makePayment = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, navigate to the checkout page
-        navigate("/checkout", { state: { cartItems } });
+        // User is signed in
+        handlePayment();
       } else {
-        // User is not signed in, redirect to the login page
         navigate("/login");
       }
     });
   };
-
+  
+  const handlePayment = async () => {
+    // payment integration
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PBKEY);
+  
+    const body = {
+      products: cartItems
+    };
+  
+    const headers = {
+      "Content-Type": "application/json"
+    };
+  
+    try {
+      const response = await fetch("http://localhost:7000/api/create-checkout-session", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body)
+      });
+  
+      const session = await response.json();
+  
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id
+      });
+  
+      if (result.error) {
+        console.log(result.error);
+      }
+    } catch (error) {
+      console.error('Error during payment:', error);
+    }
+  };
+  
+ 
   return (
     
     <div className="container mx-auto my-8">
@@ -100,7 +135,7 @@ const ShoppingCart = () => {
             </p>
             <button
               className="bg-indigo-500 text-white px-4 py-2 rounded-full mt-4"
-              onClick={handleCheckout}
+              onClick={makePayment}
             >
               Checkout
             </button>
