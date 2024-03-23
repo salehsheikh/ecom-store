@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useSelector } from "react-redux";
+import Logout from "../auth/Logout";
+import useAuth from "../auth/useAuth";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const { user } = useAuth();
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -47,7 +50,7 @@ const Navbar = () => {
             Get free delivery on orders over $100
           </p>
           <nav className="flex justify-between items-center max-container h-20">
-            <Link to="/"className=" text-wrap bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-5xl ">
+            <Link to="/" className="text-wrap bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-5xl">
               sHkStore
             </Link>
             <ul className="flex-1 flex justify-center items-center gap-16 max-sm:hidden">
@@ -63,24 +66,34 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <div className="flex hover:text-indigo-500 transition duration-300 ease-in-out  hover:underline max-lg:hidden mr-24">
-              <Link to="/login">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-7 h-7"
-                >
-                  <path
-                     strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  />
-                </svg>
-              </Link>
-            </div>
+            {/* Conditional rendering of logout button or login SVG */}
+            {user ? (
+              <Logout  />
+            ) : (
+              <div
+                className="flex hover:text-indigo-500 transition duration-300 ease-in-out hover:underline max-lg:hidden mr-24"
+                onClick={() => {
+                  setIsMenuOpen(!isMenuOpen);
+                }}
+              >
+                <Link to="/login">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-7 h-7"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            )}
             <div
               className="hidden max-lg:block cursor-pointer"
               onClick={() => {
@@ -94,8 +107,8 @@ const Navbar = () => {
       </header>
       {isMenuOpen && (
         <div>
-          <nav className="static top-0 right-0 left-0 bottom-0 lg:bottom-auto bg-slate-100  ">
-            <ul className=" lg:hidden flex flex-col items-center justify-center h-auto overflow-auto ">
+          <nav className="static top-0 right-0 left-0 bottom-0 lg:bottom-auto bg-slate-100">
+            <ul className="lg:hidden flex flex-col items-center justify-center h-auto overflow-auto">
               {navLinks.map((item) => (
                 <li key={`${item.to}-${item.label}`}>
                   <Link
@@ -104,8 +117,6 @@ const Navbar = () => {
                   >
                     {item.label}
                     {item.icon}
-                  
-                    
                   </Link>
                 </li>
               ))}
