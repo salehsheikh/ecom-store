@@ -11,6 +11,9 @@ app.use(cors());
 
 }
 const stripe = new Stripe(process.env.STRIPE_SECRET);
+app.get('/', (req, res) => {
+    res.send('Welcome to the home page!');
+});
 // checkout api
 app.post("/api/create-checkout-session",async(req,res)=>{
     const {products} = req.body;
