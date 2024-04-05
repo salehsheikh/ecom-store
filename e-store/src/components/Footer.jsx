@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Footer = () => {
   const notify = () => toast("subscribed successfully");
   return (
-    <footer className="bg-[#222] pt-10 pb-10 mt-10">
+    <footer className="bg-[#222] pt-10  mt-10 ">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
           <div className="sm:w-1/2 lg:w-3/12 pb-10">

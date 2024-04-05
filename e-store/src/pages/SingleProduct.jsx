@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, } from 'react-router-dom';
 import { addToCart } from '../Slices/cartSlice';
 import { Vortex } from 'react-loader-spinner';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -61,7 +61,7 @@ const SingleProduct = () => {
 
     });
     // Redirect to the cart page after adding to cart
-    navigate('/cart');
+    // navigate('/cart');
     
   };
 
