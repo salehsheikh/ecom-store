@@ -4,6 +4,7 @@ import express from 'express';
 const app = express();
 import cors from 'cors';
 import Stripe from 'stripe';
+import path from 'path';
 
 app.use(express.json());
 app.use(cors());
