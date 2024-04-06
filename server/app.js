@@ -1,15 +1,15 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-import path from 'path';
 const app = express();
 import cors from 'cors';
 import Stripe from 'stripe';
+import path from 'path';
 
 app.use(express.json());
 app.use(cors());
 
-const __dirname1 = path.resolve();
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/e-store/dist")));
@@ -21,8 +21,12 @@ if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => {
     res.send("API is running..");
   });
+
 }
 const stripe = new Stripe(process.env.STRIPE_SECRET);
+app.get('/', (req, res) => {
+    res.send('Welcome to the home page!');
+});
 // checkout api
 app.post("/api/create-checkout-session",async(req,res)=>{
     const {products} = req.body;
@@ -53,6 +57,6 @@ app.post("/api/create-checkout-session",async(req,res)=>{
 })
 
 
-app.listen(7000,()=>{
+app.listen(3000,()=>{
     console.log("server start")
 })
