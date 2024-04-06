@@ -16,7 +16,7 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate('/home');
+        navigate('/cart');
         toast.success(`${email} logged in successfully`, {
           position: 'top-right',
           autoClose: 3000,
