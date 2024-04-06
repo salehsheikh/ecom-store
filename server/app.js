@@ -9,6 +9,18 @@ app.use(express.json());
 app.use(cors());
 
 
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/e-store/dist")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "/e-store/dist/index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+
 }
 const stripe = new Stripe(process.env.STRIPE_SECRET);
 app.get('/', (req, res) => {
@@ -44,6 +56,6 @@ app.post("/api/create-checkout-session",async(req,res)=>{
 })
 
 
-app.listen(7000,()=>{
+app.listen(3000,()=>{
     console.log("server start")
 })
