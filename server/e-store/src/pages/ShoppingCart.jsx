@@ -53,7 +53,7 @@ const ShoppingCart = () => {
     };
   
     try {
-      const response = await fetch("http://localhost:3000/api/create-checkout-session", {
+      const response = await fetch("https://server-eta-ten-46.vercel.app/api/create-checkout-session", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body)
