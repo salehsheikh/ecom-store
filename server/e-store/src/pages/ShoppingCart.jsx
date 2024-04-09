@@ -15,7 +15,8 @@ const ShoppingCart = () => {
     dispatch(removeFromCart(productId));
   };
   useEffect(()=>{
-    localStorage.setItem('cart',JSON.Stringify(cartItems));
+    localStorage.setItem('cart',JSON.stringify(cartItems));
+  },[]);
 
   const handleQuantityChange = (productId, newQuantity) => {
     // Ensure the new quantity is within a valid range (greater than 0)
