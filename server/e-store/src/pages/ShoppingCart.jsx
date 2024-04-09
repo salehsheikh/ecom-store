@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateCartItemQuantity } from "../Slices/cartSlice";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,8 @@ const ShoppingCart = () => {
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
   };
+  useEffect(()=>{
+    localStorage.setItem('cart',JSON.Stringify(cartItems));
 
   const handleQuantityChange = (productId, newQuantity) => {
     // Ensure the new quantity is within a valid range (greater than 0)
