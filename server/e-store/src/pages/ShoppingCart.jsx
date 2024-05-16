@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateCartItemQuantity } from "../Slices/cartSlice";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,9 @@ const ShoppingCart = () => {
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
   };
+  useEffect(()=>{
+    localStorage.setItem('cart',JSON.stringify(cartItems));
+  },[]);
 
   const handleQuantityChange = (productId, newQuantity) => {
     // Ensure the new quantity is within a valid range (greater than 0)
@@ -53,7 +56,7 @@ const ShoppingCart = () => {
     };
   
     try {
-      const response = await fetch("http://localhost:3000/api/create-checkout-session", {
+      const response = await fetch("https://server-eta-ten-46.vercel.app/api/create-checkout-session", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body)
